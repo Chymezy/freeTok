@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --color-vibrant-orange: #FF6F00;
+  --color-white: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body, 'Roboto', 'Open Sans', system-ui, sans-serif);
+  overflow-x: hidden;
+}
+
+/* Custom utility classes */
+.btn-primary {
+  background: var(--color-vibrant-orange);
+  color: var(--color-white);
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.125rem;
+  transition: all 0.3s ease;
+}
+.btn-primary:hover {
+  box-shadow: 0 0 20px rgba(255, 111, 0, 0.3);
+}
+.btn-secondary {
+  border: 2px solid rgba(255,255,255,0.3);
+  color: var(--color-white);
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.125rem;
+  transition: all 0.3s ease;
+}
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.1);
+} 
