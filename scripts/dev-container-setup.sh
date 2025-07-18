@@ -17,15 +17,15 @@ dfx stop
 
 # Install mops dependencies
 echo "📦 Installing mops dependencies..."
-npm install -g ic-mops
-mops install
+# npm install -g ic-mops
+# mops install
 
 # Install jq for JSON parsing in scripts
 echo "🔧 Installing utilities..."
 apt-get update && apt-get install -y jq curl
 
 # Install Ollama for local LLM support
-echo "🤖 Installing Ollama for LLM support..."
-curl -fsSL https://ollama.com/install.sh | sh
+# echo "🤖 Installing Ollama for LLM support..."
+# curl -fsSL https://ollama.com/install.sh | sh
 
 echo "✅ Development environment setup complete!"

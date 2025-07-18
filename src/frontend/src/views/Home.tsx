@@ -1,10 +1,10 @@
-import Header from '../components/Header';
-import Hero from '../components/home/Hero';
-import ProblemSection from '../components/home/ProblemSection';
-import FeaturesSection from '../components/home/FeaturesSection';
-import RoadmapSection from '../components/home/RoadmapSection';
-import CTASection from '../components/home/CTASection';
-import Footer from '../components/Footer';
+import Header from "../components/Header";
+import Hero from "../components/home/Hero";
+import ProblemSection from "../components/home/ProblemSection";
+import FeaturesSection from "../components/home/FeaturesSection";
+import RoadmapSection from "../components/home/RoadmapSection";
+import CTASection from "../components/home/CTASection";
+import Footer from "../components/Footer";
 
 export default function Home() {
   return (
@@ -20,4 +20,4 @@ export default function Home() {
       </main>
     </>
   );
-} 
+}

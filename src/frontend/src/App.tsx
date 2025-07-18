@@ -1,6 +1,5 @@
-import React from "react";
-import Home from './views/Home';
-import { AuthProvider } from './components/AuthContext';
+import Home from "./views/Home";
+import { AuthProvider } from "./components/AuthContext";
 
 export default function App() {
   return (
@@ -8,4 +7,4 @@ export default function App() {
       <Home />
     </AuthProvider>
   );
-} 
+}

@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function RoadmapSection() {
   const phases = [
     {
@@ -9,14 +7,14 @@ export default function RoadmapSection() {
       status: "In Development",
       features: [
         "Profiles & posts fully on-chain",
-        "Internet Identity authentication", 
+        "Internet Identity authentication",
         "Basic feed & like functionality",
-        "Deployed to ICP mainnet"
+        "Deployed to ICP mainnet",
       ],
-      gradient: "from-deep-indigo to-electric-blue"
+      gradient: "from-deep-indigo to-electric-blue",
     },
     {
-      phase: "PHASE 2", 
+      phase: "PHASE 2",
       title: "Monetization & Governance",
       timeline: "Q2 2025",
       status: "Planned",
@@ -24,72 +22,77 @@ export default function RoadmapSection() {
         "Micro-tipping system",
         "Creator marketplace",
         "DAO moderation",
-        "Whistleblower tools"
+        "Whistleblower tools",
       ],
-      gradient: "from-electric-blue to-vibrant-orange"
+      gradient: "from-electric-blue to-vibrant-orange",
     },
     {
       phase: "PHASE 3",
-      title: "Global Scale", 
+      title: "Global Scale",
       timeline: "Q3-Q4 2025",
       status: "Planned",
       features: [
         "Regional hubs",
         "Mobile apps",
         "Enterprise tools",
-        "NGO partnerships"
+        "NGO partnerships",
       ],
-      gradient: "from-vibrant-orange to-deep-indigo"
-    }
+      gradient: "from-vibrant-orange to-deep-indigo",
+    },
   ];
 
   const marketData = [
     { metric: "3.3B", label: "Users in censored regions", icon: "🌏" },
     { metric: "$104B", label: "Global creator economy", icon: "🎥" },
     { metric: "10K+", label: "NGOs & watchdogs", icon: "📰" },
-    { metric: "$35B", label: "Decentralized social TAM (2030)", icon: "💰" }
+    { metric: "$35B", label: "Decentralized social TAM (2030)", icon: "💰" },
   ];
 
   return (
-    <section id="build" className="py-20 bg-charcoal-black">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
+    <section id="build" className="bg-charcoal-black py-20">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="mb-16 text-center">
+          <h2 className="font-heading mb-6 text-4xl font-bold text-white md:text-5xl">
             Platform Evolution
           </h2>
-          <p className="text-xl text-white/70 font-body max-w-3xl mx-auto">
-            Our roadmap to building the world&apos;s most powerful decentralized social platform.
+          <p className="font-body mx-auto max-w-3xl text-xl text-white/70">
+            Our roadmap to building the world&apos;s most powerful decentralized
+            social platform.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid gap-8 md:grid-cols-3">
           {phases.map((phase, index) => (
             <div key={index} className="relative">
-              <div className={`bg-gradient-to-br ${phase.gradient} p-8 rounded-2xl`}>
-                <div className="flex items-center justify-between mb-6">
-                  <span className="text-white font-code font-bold text-sm">
+              <div
+                className={`bg-gradient-to-br ${phase.gradient} rounded-2xl p-8`}
+              >
+                <div className="mb-6 flex items-center justify-between">
+                  <span className="font-code text-sm font-bold text-white">
                     {phase.phase}
                   </span>
-                  <span className="text-white/80 font-body text-sm">
+                  <span className="font-body text-sm text-white/80">
                     {phase.timeline}
                   </span>
                 </div>
-                
-                <h3 className="text-2xl font-heading font-bold text-white mb-4">
+
+                <h3 className="font-heading mb-4 text-2xl font-bold text-white">
                   {phase.title}
                 </h3>
-                
+
                 <div className="mb-6">
-                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold ${
-                    phase.status === "In Development" 
-                      ? "bg-green-500 text-white" 
-                      : "bg-white/20 text-white"
-                  }`}>
+                  <span
+                    className={`inline-block rounded-full px-3 py-1 text-xs font-bold ${
+                      phase.status === "In Development"
+                        ? "bg-green-500 text-white"
+                        : "bg-white/20 text-white"
+                    }`}
+                  >
                     {phase.status}
                   </span>
                 </div>
 
-                <ul className="text-white/90 font-body space-y-2">
+                <ul className="font-body space-y-2 text-white/90">
                   {phase.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-start">
                       <span className="text-vibrant-orange mr-2">•</span>
@@ -103,45 +106,53 @@ export default function RoadmapSection() {
         </div>
 
         {/* Market Opportunity */}
-        <div className="mt-20 bg-white/10 backdrop-blur-sm rounded-2xl p-8">
-          <h3 className="text-3xl font-heading font-bold text-white mb-8 text-center">
+        <div className="mt-20 rounded-2xl bg-white/10 p-8 backdrop-blur-sm">
+          <h3 className="font-heading mb-8 text-center text-3xl font-bold text-white">
             Market Opportunity
           </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {marketData.map((data, index) => (
               <div key={index} className="text-center">
-                <div className="text-4xl mb-2">{data.icon}</div>
-                <div className="text-2xl font-heading font-bold text-white">{data.metric}</div>
-                <div className="text-white/70 font-body">{data.label}</div>
+                <div className="mb-2 text-4xl">{data.icon}</div>
+                <div className="font-heading text-2xl font-bold text-white">
+                  {data.metric}
+                </div>
+                <div className="font-body text-white/70">{data.label}</div>
               </div>
             ))}
           </div>
         </div>
 
         {/* Strategic Partnerships */}
-        <div className="mt-16 bg-gradient-to-r from-deep-indigo/20 to-electric-blue/20 rounded-2xl p-8">
-          <h3 className="text-2xl font-heading font-bold text-white mb-6 text-center">
+        <div className="from-deep-indigo/20 to-electric-blue/20 mt-16 rounded-2xl bg-gradient-to-r p-8">
+          <h3 className="font-heading mb-6 text-center text-2xl font-bold text-white">
             Strategic Focus Areas
           </h3>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid gap-6 md:grid-cols-3">
             <div className="text-center">
-              <div className="text-3xl mb-4">👨‍💻</div>
-              <h4 className="text-lg font-heading font-bold text-white mb-2">Developer Ecosystem</h4>
-              <p className="text-white/80 font-body text-sm">
+              <div className="mb-4 text-3xl">👨‍💻</div>
+              <h4 className="font-heading mb-2 text-lg font-bold text-white">
+                Developer Ecosystem
+              </h4>
+              <p className="font-body text-sm text-white/80">
                 Open APIs and SDKs for third-party integrations
               </p>
             </div>
             <div className="text-center">
-              <div className="text-3xl mb-4">🎥</div>
-              <h4 className="text-lg font-heading font-bold text-white mb-2">Creator Economy</h4>
-              <p className="text-white/80 font-body text-sm">
+              <div className="mb-4 text-3xl">🎥</div>
+              <h4 className="font-heading mb-2 text-lg font-bold text-white">
+                Creator Economy
+              </h4>
+              <p className="font-body text-sm text-white/80">
                 Direct monetization tools for content creators
               </p>
             </div>
             <div className="text-center">
-              <div className="text-3xl mb-4">🏢</div>
-              <h4 className="text-lg font-heading font-bold text-white mb-2">Enterprise Solutions</h4>
-              <p className="text-white/80 font-body text-sm">
+              <div className="mb-4 text-3xl">🏢</div>
+              <h4 className="font-heading mb-2 text-lg font-bold text-white">
+                Enterprise Solutions
+              </h4>
+              <p className="font-body text-sm text-white/80">
                 Custom deployments for organizations and NGOs
               </p>
             </div>
@@ -150,4 +161,4 @@ export default function RoadmapSection() {
       </div>
     </section>
   );
-} 
+}

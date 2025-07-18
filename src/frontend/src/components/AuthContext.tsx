@@ -1,4 +1,11 @@
-import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  ReactNode,
+} from "react";
 import { AuthClient } from "@dfinity/auth-client";
 
 interface User {
@@ -39,7 +46,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
         setLoading(false);
       } catch (error) {
-        console.error('Auth check error:', error);
+        console.error("Auth check error:", error);
         setIsAuthenticated(false);
         setPrincipal(null);
         setUser(null);
@@ -61,13 +68,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           setUser({ id: identity.getPrincipal().toText() });
         },
         onError: (error) => {
-          console.error('Login error:', error);
-          alert('Login failed: ' + error);
-        }
+          console.error("Login error:", error);
+          alert("Login failed: " + error);
+        },
       });
     } catch (error) {
-      console.error('Login setup error:', error);
-      alert('Login setup failed: ' + error);
+      console.error("Login setup error:", error);
+      alert("Login setup failed: " + error);
     }
   }, []);
 
@@ -79,12 +86,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setPrincipal(null);
       setUser(null);
     } catch (error) {
-      console.error('Logout error:', error);
+      console.error("Logout error:", error);
     }
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, principal, loading, login, logout }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, user, principal, loading, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -96,4 +105,4 @@ export function useAuth() {
     throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
-} 
+}
