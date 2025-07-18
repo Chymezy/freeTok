@@ -1,40 +1,25 @@
-import { backend } from "../../../declarations/backend";
+import { backend } from '../../../declarations/backend';
 
-/**
- * Service for handling all backend canister API calls
- */
+
 export const backendService = {
-  /**
-   * Sends a greeting to the backend and returns the response
-   * @param name Name to greet
-   * @returns Promise with the greeting response
-   */
-  async greet(name: string): Promise<string> {
-    return await backend.greet(name || "World");
+  async getFeed(limit: number = 20, offset: number = 0) {
+    const result = await backend.getFeed(BigInt(offset), BigInt(limit));
+    return result.map((item: any) => ({
+      post: {
+        ...item.post,
+        id: Number(item.post.id),
+        authorId: item.post.authorId.toString(),
+        createdAt: Number(item.post.createdAt),
+        updatedAt: Number(item.post.updatedAt),
+        likes: Number(item.post.likes),
+        comments: Number(item.post.comments),
+      },
+      author: {
+        ...item.author,
+        id: item.author.id.toString(),
+        createdAt: Number(item.author.createdAt),
+        updatedAt: Number(item.author.updatedAt),
+      },
+    }));
   },
-
-  /**
-   * Fetches the current counter value
-   * @returns Promise with the current count
-   */
-  async getCount(): Promise<bigint> {
-    return await backend.get_count();
-  },
-
-  /**
-   * Increments the counter on the backend
-   * @returns Promise with the new count
-   */
-  async incrementCounter(): Promise<bigint> {
-    return await backend.increment();
-  },
-
-  /**
-   * Sends a prompt to the LLM backend
-   * @param prompt The user's prompt text
-   * @returns Promise with the LLM response
-   */
-  async sendLlmPrompt(prompt: string): Promise<string> {
-    return await backend.prompt(prompt);
-  },
-};
+}; 
