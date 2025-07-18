@@ -1,6 +1,11 @@
 import React from "react";
-import BrandDemo from "./BrandDemo";
+import Home from './views/Home';
+import { AuthProvider } from './components/AuthContext';
 
 export default function App() {
-  return <BrandDemo />;
-}
+  return (
+    <AuthProvider>
+      <Home />
+    </AuthProvider>
+  );
+} 
