@@ -21,4 +21,36 @@ export const backendService = {
       },
     }));
   },
+
+  async createPost(content: string) {
+    const result = await backend.createPost(content);
+    return result;
+  },
+
+  async likePost(postId: number) {
+    const result = await backend.likePost(BigInt(postId));
+    return result;
+  },
+
+  async unlikePost(postId: number) {
+    const result = await backend.unlikePost(BigInt(postId));
+    return result;
+  },
+
+  async addComment(postId: number, content: string) {
+    const result = await backend.addComment(BigInt(postId), content);
+    return result;
+  },
+
+  async getComments(postId: number) {
+    const comments = await backend.getComments(BigInt(postId));
+    return comments.map((comment: any) => ({
+      ...comment,
+      id: Number(comment.id),
+      postId: Number(comment.postId),
+      authorId: comment.authorId.toString(),
+      createdAt: Number(comment.createdAt),
+      updatedAt: Number(comment.updatedAt),
+    }));
+  },
 };

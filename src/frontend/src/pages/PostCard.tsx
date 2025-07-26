@@ -9,6 +9,10 @@ export default function PostCard() {
   const [postData, setPostData] = useState<FeedPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [comments, setComments] = useState<any[]>([]);
+  const [newComment, setNewComment] = useState("");
+  const [isLiking, setIsLiking] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
     async function fetchPost() {
@@ -24,6 +28,10 @@ export default function PostCard() {
           setError("Post not found");
         } else {
           setPostData(found);
+          const postComments = await backendService.getComments(Number(postId));
+          setComments(postComments);
+          // Check if user liked the post (this requires user info, skipped for now)
+          setIsLiked(false);
         }
       } catch (err) {
         setError("Failed to fetch post");
@@ -36,6 +44,52 @@ export default function PostCard() {
 
   const formatDate = (timestamp: number) =>
     new Date(timestamp).toLocaleString();
+
+  const handleLike = async () => {
+    if (!postData) return;
+    setIsLiking(true);
+    try {
+      if (isLiked) {
+        await backendService.unlikePost(postData.post.id);
+        setPostData({
+          ...postData,
+          post: { ...postData.post, likes: postData.post.likes - 1 },
+        });
+        setIsLiked(false);
+      } else {
+        await backendService.likePost(postData.post.id);
+        setPostData({
+          ...postData,
+          post: { ...postData.post, likes: postData.post.likes + 1 },
+        });
+        setIsLiked(true);
+      }
+    } catch (error) {
+      console.error("Failed to update like status", error);
+    } finally {
+      setIsLiking(false);
+    }
+  };
+
+  const handleAddComment = async () => {
+    if (!postData || newComment.trim() === "") return;
+    try {
+      const result = await backendService.addComment(postData.post.id, newComment);
+      if ("#ok" in result) {
+        const comment = result["#ok"];
+        setComments([...comments, comment]);
+        setPostData({
+          ...postData,
+          post: { ...postData.post, comments: postData.post.comments + 1 },
+        });
+        setNewComment("");
+      } else if ("#err" in result) {
+        alert(result["#err"]);
+      }
+    } catch (error) {
+      console.error("Failed to add comment", error);
+    }
+  };
 
   if (loading) {
     return <div className="p-4 text-center">Loading...</div>;
@@ -89,9 +143,13 @@ export default function PostCard() {
 
       {/* Post Actions */}
       <div className="flex items-center gap-6 text-sm">
-        <button className="text-accent flex items-center gap-1 font-medium hover:underline">
+        <button
+          className="text-accent flex items-center gap-1 font-medium hover:underline disabled:opacity-50"
+          onClick={handleLike}
+          disabled={isLiking}
+        >
           <span role="img" aria-label="like">
-            👍
+            {isLiked ? "💖" : "👍"}
           </span>{" "}
           {post.likes}
         </button>
@@ -101,6 +159,43 @@ export default function PostCard() {
           </span>{" "}
           {post.comments}
         </button>
+      </div>
+
+      {/* Comments Section */}
+      <div className="mt-6">
+        <h4 className="mb-2 font-heading text-lg">Comments</h4>
+        <div className="space-y-4">
+          {comments.length === 0 && (
+            <p className="text-gray-500 dark:text-gray-400">No comments yet.</p>
+          )}
+          {comments.map((comment) => (
+            <div
+              key={comment.id}
+              className="rounded border border-gray-300 p-3 dark:border-gray-600"
+            >
+              <p className="font-body text-sm">{comment.content}</p>
+              <div className="mt-1 text-xs text-gray-400">
+                By {comment.authorId} on {formatDate(comment.createdAt)}
+              </div>
+            </div>
+          ))}
+        </div>
+      <div className="mt-4 flex gap-2">
+        <textarea
+          className="flex-1 rounded border border-gray-300 p-2 text-sm bg-white text-gray-900 dark:border-gray-600 dark:bg-gray-100 dark:text-gray-900 placeholder-gray-500"
+          rows={2}
+          placeholder="Add a comment..."
+          value={newComment}
+          onChange={(e) => setNewComment(e.target.value)}
+        />
+        <button
+          className="rounded bg-primary px-4 py-2 text-white hover:bg-primary-dark disabled:opacity-50"
+          onClick={handleAddComment}
+          disabled={newComment.trim() === ""}
+        >
+          Post
+        </button>
+      </div>
       </div>
     </div>
   );

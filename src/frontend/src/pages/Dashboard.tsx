@@ -26,7 +26,15 @@ export default function Dashboard() {
 
   return (
     <DashboardLayout>
-      <h1 className="font-heading mb-6 text-3xl">Welcome to FreeTok 🎉</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="font-heading mb-6 text-3xl">Welcome to deCentra 🎉</h1>
+        <button
+          onClick={() => navigate("/create-post")}
+          className="rounded bg-primary px-4 py-2 font-semibold text-white hover:bg-primary-dark"
+        >
+          Create Post
+        </button>
+      </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
         <div className="card">🔥 Trending Topics</div>

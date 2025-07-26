@@ -13,12 +13,12 @@ export default function DashboardLayout({
       {/* Sidebar for desktop view */}
       <Sidebar />
 
-      <main className="flex min-h-screen flex-1 flex-col bg-[var(--color-light)] p-4 sm:p-6 lg:ml-64">
+      <main className="flex min-h-screen flex-1 flex-col bg-[var(--color-light)] pt-20 p-6 lg:ml-64">
         {/* Header */}
         <Header />
 
         {/* Page content */}
-        <div className="flex-1">{children}</div>
+        <div className="flex-1 mt-4">{children}</div>
 
         {/* Footer */}
         {/* <Footer /> */}
