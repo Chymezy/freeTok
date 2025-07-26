@@ -52,7 +52,7 @@
   input,
   textarea,
   select {
-    @apply w-full p-3 border border-gray-200 rounded-xl bg-white text-charcoal-black focus:ring-2 focus:ring-deep-indigo focus:border-transparent transition duration-300;
+    @apply text-charcoal-black focus:ring-deep-indigo w-full rounded-xl border border-gray-200 bg-white p-3 transition duration-300 focus:border-transparent focus:ring-2;
   }
 }
 
