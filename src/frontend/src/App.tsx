@@ -5,6 +5,7 @@ import Feed from "./pages/Feed";
 import PostCard from "./pages/PostCard";
 import CreatePost from "./pages/CreatePost";
 import { AuthProvider, useAuth } from "./context/AuthContext";
+import DashboardLayout from "./components/dashboard/DashboardLayout";
 
 export default function App() {
   return (
@@ -32,11 +33,13 @@ function MainRouter() {
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/dashboard/feeds" element={<Feed />} />
-      <Route path="/post/:postId" element={<PostCard />} />
-      <Route path="/create-post" element={<CreatePost />} />
-      <Route path="*" element={<Navigate to="/dashboard" replace />} />
+      <Route path="/dashboard" element={<DashboardLayout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="feeds" element={<Feed />} />
+        <Route path="post/:postId" element={<PostCard />} />
+        <Route path="post" element={<CreatePost />} />
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+      </Route>
     </Routes>
   );
 }

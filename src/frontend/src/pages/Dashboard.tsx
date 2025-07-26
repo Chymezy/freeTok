@@ -8,16 +8,28 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const [posts, setPosts] = useState<FeedPost[]>([]);
 
-  useEffect(() => {
-    async function fetchPosts() {
-      try {
-        const fetchedPosts = await backendService.getFeed(20, 0);
-        setPosts(fetchedPosts);
-      } catch (error) {
-        console.error("Failed to fetch posts:", error);
-      }
+  async function fetchPosts() {
+    try {
+      const fetchedPosts = await backendService.getFeed(20, 0);
+      setPosts(fetchedPosts);
+    } catch (error) {
+      console.error("Failed to fetch posts:", error);
     }
+  }
+
+  useEffect(() => {
     fetchPosts();
+  }, []);
+
+  // Refetch posts when navigating back to dashboard
+  useEffect(() => {
+    const handleFocus = () => {
+      fetchPosts();
+    };
+    window.addEventListener("focus", handleFocus);
+    return () => {
+      window.removeEventListener("focus", handleFocus);
+    };
   }, []);
 
   const handlePostClick = (postId: number) => {
@@ -25,12 +37,12 @@ export default function Dashboard() {
   };
 
   return (
-    <DashboardLayout>
-      <div className="flex items-center justify-between">
-        <h1 className="font-heading mb-6 text-3xl">Welcome to deCentra 🎉</h1>
+    <>
+      <div className="mb-6 flex flex-col items-center justify-between gap-4 sm:flex-row">
+        <h1 className="font-heading text-center text-3xl sm:text-left">Welcome to deCentra 🎉</h1>
         <button
-          onClick={() => navigate("/create-post")}
-          className="bg-primary hover:bg-primary-dark rounded px-4 py-2 font-semibold text-white"
+          onClick={() => navigate("/dashboard/post")}
+          className="w-full rounded bg-primary px-4 py-2 font-semibold text-white hover:bg-primary-dark sm:w-auto"
         >
           Create Post
         </button>
@@ -60,6 +72,6 @@ export default function Dashboard() {
           </div>
         ))}
       </div>
-    </DashboardLayout>
+    </>
   );
 }

@@ -3,8 +3,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import { backendService } from "../services/backendService";
 import type { FeedPost } from "../services/canister";
 
-export default function PostCard() {
-  const { postId } = useParams<{ postId: string }>();
+export default function PostCard({ postId: propPostId }: { postId?: number }) {
+  const params = useParams<{ postId: string }>();
+  const postId = propPostId ?? (params.postId ? Number(params.postId) : null);
   const navigate = useNavigate();
   const [postData, setPostData] = useState<FeedPost | null>(null);
   const [loading, setLoading] = useState(true);
@@ -16,19 +17,19 @@ export default function PostCard() {
 
   useEffect(() => {
     async function fetchPost() {
-      if (!postId) {
+      if (postId === null || postId === undefined) {
         setError("Invalid post ID");
         setLoading(false);
         return;
       }
       try {
         const feed = await backendService.getFeed(20, 0);
-        const found = feed.find((item) => item.post.id === Number(postId));
+        const found = feed.find((item) => item.post.id === postId);
         if (!found) {
           setError("Post not found");
         } else {
           setPostData(found);
-          const postComments = await backendService.getComments(Number(postId));
+          const postComments = await backendService.getComments(postId);
           setComments(postComments);
           // Check if user liked the post (this requires user info, skipped for now)
           setIsLiked(false);
@@ -193,7 +194,10 @@ export default function PostCard() {
           />
           <button
             className="bg-primary hover:bg-primary-dark rounded px-4 py-2 text-white disabled:opacity-50"
-            onClick={handleAddComment}
+            onClick={(e) => {
+              e.preventDefault();
+              handleAddComment();
+            }}
             disabled={newComment.trim() === ""}
           >
             Post

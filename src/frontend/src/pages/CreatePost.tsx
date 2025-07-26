@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DashboardLayout from "../components/dashboard/DashboardLayout";
 import { backendService } from "../services/backendService";
 
 export default function CreatePost() {
@@ -27,6 +26,7 @@ export default function CreatePost() {
     setLoading(true);
     try {
       const result = await backendService.createPost(content);
+      console.log("CreatePost result:", result);
       // Assuming result has #ok or #err structure
       if ("#ok" in result) {
         navigate("/dashboard");
@@ -49,34 +49,32 @@ export default function CreatePost() {
   };
 
   return (
-    <DashboardLayout>
-      <div className="mx-auto max-w-2xl p-4">
-        <h1 className="font-heading mb-6 text-3xl">Create New Post</h1>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <textarea
-            className="focus:ring-primary w-full resize-y rounded border border-gray-300 p-3 text-base focus:ring-2 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-            rows={6}
-            maxLength={maxLength}
-            placeholder="Write your post content here..."
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            disabled={loading}
-          />
-          <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400">
-            <span>
-              {content.length} / {maxLength}
-            </span>
-            {error && <span className="text-red-500">{error}</span>}
-          </div>
-          <button
-            type="submit"
-            disabled={loading}
-            className="bg-primary hover:bg-primary-dark rounded px-6 py-3 font-semibold text-white disabled:opacity-50"
-          >
-            {loading ? "Posting..." : "Post"}
-          </button>
-        </form>
-      </div>
-    </DashboardLayout>
+    <div className="mx-auto max-w-2xl p-4">
+      <h1 className="font-heading mb-6 text-3xl">Create New Post</h1>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <textarea
+          className="focus:ring-primary w-full resize-y rounded border border-gray-300 p-3 text-base focus:ring-2 focus:outline-none bg-white text-gray-900"
+          rows={6}
+          maxLength={maxLength}
+          placeholder="Write your post content here..."
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          disabled={loading}
+        />
+        <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400">
+          <span>
+            {content.length} / {maxLength}
+          </span>
+          {error && <span className="text-red-500">{error}</span>}
+        </div>
+        <button
+          type="submit"
+          disabled={loading}
+          className="bg-primary hover:bg-primary-dark rounded px-6 py-3 font-semibold text-white disabled:opacity-50"
+        >
+          {loading ? "Posting..." : "Post"}
+        </button>
+      </form>
+    </div>
   );
 }
