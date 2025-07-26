@@ -39,10 +39,12 @@ export default function Dashboard() {
   return (
     <>
       <div className="mb-6 flex flex-col items-center justify-between gap-4 sm:flex-row">
-        <h1 className="font-heading text-center text-3xl sm:text-left">Welcome to deCentra 🎉</h1>
+        <h1 className="font-heading text-center text-3xl sm:text-left">
+          Welcome to deCentra 🎉
+        </h1>
         <button
           onClick={() => navigate("/dashboard/post")}
-          className="w-full rounded bg-primary px-4 py-2 font-semibold text-white hover:bg-primary-dark sm:w-auto"
+          className="bg-primary hover:bg-primary-dark w-full rounded px-4 py-2 font-semibold text-white sm:w-auto"
         >
           Create Post
         </button>

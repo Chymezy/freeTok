@@ -53,7 +53,7 @@ export default function CreatePost() {
       <h1 className="font-heading mb-6 text-3xl">Create New Post</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <textarea
-          className="focus:ring-primary w-full resize-y rounded border border-gray-300 p-3 text-base focus:ring-2 focus:outline-none bg-white text-gray-900"
+          className="focus:ring-primary w-full resize-y rounded border border-gray-300 bg-white p-3 text-base text-gray-900 focus:ring-2 focus:outline-none"
           rows={6}
           maxLength={maxLength}
           placeholder="Write your post content here..."

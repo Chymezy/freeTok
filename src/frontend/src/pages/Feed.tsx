@@ -48,7 +48,9 @@ export default function Feed() {
             className="cursor-pointer rounded-lg border border-gray-300 bg-gray-50 p-4 shadow-sm transition hover:bg-gray-200"
             onClick={() => handlePostClick(post.id)}
           >
-            <p className="font-body line-clamp-3 text-base text-gray-900">{post.content}</p>
+            <p className="font-body line-clamp-3 text-base text-gray-900">
+              {post.content}
+            </p>
             <div className="mt-2 text-sm text-gray-600">
               Likes: {post.likes} | Comments: {post.comments}
             </div>
@@ -60,7 +62,7 @@ export default function Feed() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-50 p-6">
           <div className="relative max-h-full w-full max-w-2xl overflow-auto rounded-lg bg-white p-6 shadow-lg">
             <button
-              className="absolute right-4 top-4 rounded bg-gray-200 px-3 py-1 text-sm font-semibold hover:bg-gray-300"
+              className="absolute top-4 right-4 rounded bg-gray-200 px-3 py-1 text-sm font-semibold hover:bg-gray-300"
               onClick={closeModal}
             >
               Close
