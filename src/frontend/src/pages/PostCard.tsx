@@ -111,7 +111,7 @@ export default function PostCard({ postId: propPostId }: { postId?: number }) {
       <div className="p-4 text-center">
         <p>{error || "Post not found."}</p>
         <button
-          className="bg-primary mt-4 rounded px-4 py-2 text-white hover:bg-primary-dark transition"
+          className="bg-primary hover:bg-primary-dark mt-4 rounded px-4 py-2 text-white transition"
           onClick={() => navigate("/dashboard")}
         >
           Back to Dashboard
@@ -126,10 +126,13 @@ export default function PostCard({ postId: propPostId }: { postId?: number }) {
   const totalPages = Math.ceil(comments.length / commentsPerPage);
   const indexOfLastComment = currentPage * commentsPerPage;
   const indexOfFirstComment = indexOfLastComment - commentsPerPage;
-  const currentComments = comments.slice(indexOfFirstComment, indexOfLastComment);
+  const currentComments = comments.slice(
+    indexOfFirstComment,
+    indexOfLastComment,
+  );
 
   return (
-    <div className="card mx-auto w-full max-w-2xl bg-white p-6 rounded-lg shadow-md transition-shadow hover:shadow-lg">
+    <div className="card mx-auto w-full max-w-2xl rounded-lg bg-white p-6 shadow-md transition-shadow hover:shadow-lg">
       {/* Header: Author Info */}
       <div className="mb-6 flex items-center gap-4">
         {author.avatar ? (
@@ -154,14 +157,14 @@ export default function PostCard({ postId: propPostId }: { postId?: number }) {
       </div>
 
       {/* Post Content */}
-      <p className="text-gray-900 font-body mb-6 text-base break-words whitespace-pre-wrap leading-relaxed">
+      <p className="font-body mb-6 text-base leading-relaxed break-words whitespace-pre-wrap text-gray-900">
         {post.content}
       </p>
 
       {/* Post Actions */}
       <div className="flex items-center gap-8 text-sm">
         <button
-          className="text-accent flex items-center gap-2 font-medium hover:underline disabled:opacity-50 transition-colors"
+          className="text-accent flex items-center gap-2 font-medium transition-colors hover:underline disabled:opacity-50"
           onClick={handleLike}
           disabled={isLiking}
         >
@@ -170,7 +173,7 @@ export default function PostCard({ postId: propPostId }: { postId?: number }) {
           </span>
           {post.likes}
         </button>
-        <button className="text-secondary flex items-center gap-2 font-medium hover:underline transition-colors">
+        <button className="text-secondary flex items-center gap-2 font-medium transition-colors hover:underline">
           <span role="img" aria-label="comments" className="text-lg">
             💬
           </span>
@@ -190,7 +193,9 @@ export default function PostCard({ postId: propPostId }: { postId?: number }) {
               key={comment.id}
               className="rounded border border-gray-300 p-4 shadow-sm"
             >
-              <p className="font-body text-sm text-gray-800">{comment.content}</p>
+              <p className="font-body text-sm text-gray-800">
+                {comment.content}
+              </p>
               <div className="mt-2 text-xs text-gray-400">
                 By {comment.authorId} on {formatDate(comment.createdAt)}
               </div>
@@ -201,7 +206,7 @@ export default function PostCard({ postId: propPostId }: { postId?: number }) {
         {totalPages > 1 && (
           <div className="mt-6 flex justify-center gap-3">
             <button
-              className="rounded border border-gray-300 px-4 py-1 text-sm font-medium disabled:opacity-50 hover:bg-gray-100 transition"
+              className="rounded border border-gray-300 px-4 py-1 text-sm font-medium transition hover:bg-gray-100 disabled:opacity-50"
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
             >
@@ -211,8 +216,10 @@ export default function PostCard({ postId: propPostId }: { postId?: number }) {
               Page {currentPage} of {totalPages}
             </span>
             <button
-              className="rounded border border-gray-300 px-4 py-1 text-sm font-medium disabled:opacity-50 hover:bg-gray-100 transition"
-              onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+              className="rounded border border-gray-300 px-4 py-1 text-sm font-medium transition hover:bg-gray-100 disabled:opacity-50"
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+              }
               disabled={currentPage === totalPages}
             >
               Next
@@ -223,14 +230,14 @@ export default function PostCard({ postId: propPostId }: { postId?: number }) {
 
       <div className="mt-6 flex gap-3">
         <textarea
-          className="flex-1 rounded border border-gray-300 bg-white p-3 text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
+          className="focus:ring-primary flex-1 rounded border border-gray-300 bg-white p-3 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:outline-none"
           rows={3}
           placeholder="Add a comment..."
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
         />
         <button
-          className="bg-primary hover:bg-primary-dark rounded px-4 py-2 text-white font-semibold disabled:opacity-50 transition w-full sm:w-auto text-sm"
+          className="bg-primary hover:bg-primary-dark w-full rounded px-4 py-2 text-sm font-semibold text-white transition disabled:opacity-50 sm:w-auto"
           onClick={(e) => {
             e.preventDefault();
             handleAddComment();
