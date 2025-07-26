@@ -1,52 +1,66 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  /* Brand Colors */
+/* === THEME DESIGN TOKENS === */
+@theme {
+  /* 🌈 Colors */
   --color-deep-indigo: #4b0082;
   --color-electric-blue: #0f62fe;
   --color-vibrant-orange: #ff6f00;
   --color-charcoal-black: #1a1a1a;
-  /* Font Families */
-  --font-heading: "Inter", "Poppins", system-ui, sans-serif;
-  --font-body: "Roboto", "Open Sans", system-ui, sans-serif;
-  --font-code: "JetBrains Mono", monospace;
+  --color-light: #ffffff;
+
+  --color-primary: var(--color-deep-indigo);
+  --color-secondary: var(--color-electric-blue);
+  --color-accent: var(--color-vibrant-orange);
+  --color-dark: var(--color-charcoal-black);
+
+  /* 🖋️ Typography */
+  --font-heading: Inter, Poppins, system-ui, sans-serif;
+  --font-body: Roboto, Open Sans, system-ui, sans-serif;
+  --font-code: JetBrains Mono, monospace;
+
+  /* 🌟 Shadow & Border */
+  --shadow-glow: 0 0 8px var(--color-primary);
+  --border-radius-xl: 1rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* === CUSTOM BASE STYLES === */
+@layer base {
+  html,
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    margin: 0;
+    padding: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    margin: 0;
+  }
+
+  code {
+    font-family: var(--font-code);
   }
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/* === CUSTOM COMPONENTS === */
+@layer components {
+  .btn-primary {
+    @apply bg-primary font-heading hover:shadow-glow rounded-xl px-6 py-3 text-white shadow-md transition duration-300;
+  }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-body);
-}
+  .card {
+    @apply rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-lg;
+  }
 
-/* Custom utility classes */
-.btn-primary {
-  @apply bg-vibrant-orange font-heading rounded-xl px-8 py-4 text-lg font-bold text-white transition-all duration-300;
-}
-.btn-primary:hover {
-  box-shadow: 0 0 20px rgba(255, 111, 0, 0.3);
-}
-.btn-secondary {
-  @apply font-heading rounded-xl border-2 border-white/30 px-8 py-4 text-lg font-semibold text-white transition-all duration-300;
-}
-.btn-secondary:hover {
-  @apply bg-white/10;
+  .text-accent {
+    color: var(--color-accent);
+  }
 }
