@@ -37,7 +37,7 @@ export default function Dashboard() {
         <div className="card">🚀 Explore Opportunities</div>
       </div>
 
-      <h2 className="mt-8 mb-4 font-heading text-2xl">Posts</h2>
+      <h2 className="font-heading mt-8 mb-4 text-2xl">Posts</h2>
       <div className="space-y-4">
         {posts.map(({ post }) => (
           <div
@@ -45,7 +45,7 @@ export default function Dashboard() {
             className="card cursor-pointer p-4 hover:bg-gray-100 dark:hover:bg-gray-800"
             onClick={() => handlePostClick(post.id)}
           >
-            <p className="font-body text-base line-clamp-3">{post.content}</p>
+            <p className="font-body line-clamp-3 text-base">{post.content}</p>
             <div className="mt-2 text-sm text-gray-500 dark:text-gray-400">
               Likes: {post.likes} | Comments: {post.comments}
             </div>

@@ -20,9 +20,11 @@ function MainRouter() {
   }
 
   if (!isAuthenticated) {
-    return <Routes>
-      <Route path="/*" element={<LandingPage />} />
-    </Routes>;
+    return (
+      <Routes>
+        <Route path="/*" element={<LandingPage />} />
+      </Routes>
+    );
   }
 
   return (
