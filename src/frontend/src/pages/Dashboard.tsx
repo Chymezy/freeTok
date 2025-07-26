@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DashboardLayout from "../components/dashboard/DashboardLayout";
 import { backendService } from "../services/backendService";
 import type { FeedPost } from "../services/canister";
 
@@ -33,7 +32,7 @@ export default function Dashboard() {
   }, []);
 
   const handlePostClick = (postId: number) => {
-    navigate(`/post/${postId}`);
+    navigate(`/dashboard/post/${postId}`);
   };
 
   return (
