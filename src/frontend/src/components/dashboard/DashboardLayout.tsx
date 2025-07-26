@@ -2,7 +2,6 @@
 import React from "react";
 import Sidebar from "./Sidebar";
 import Header from "../Header/Header";
-import Footer from "../Footer";
 
 export default function DashboardLayout({
   children,

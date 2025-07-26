@@ -1,5 +1,7 @@
+import { Routes, Route, Navigate } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Dashboard";
+import PostCard from "./pages/PostCard";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 
 export default function App() {
@@ -17,5 +19,17 @@ function MainRouter() {
     return <div className="mt-10 text-center">Loading...</div>;
   }
 
-  return isAuthenticated ? <Dashboard /> : <LandingPage />;
+  if (!isAuthenticated) {
+    return <Routes>
+      <Route path="/*" element={<LandingPage />} />
+    </Routes>;
+  }
+
+  return (
+    <Routes>
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/post/:postId" element={<PostCard />} />
+      <Route path="*" element={<Navigate to="/dashboard" replace />} />
+    </Routes>
+  );
 }
