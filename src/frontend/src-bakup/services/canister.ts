@@ -1,6 +1,6 @@
 // This file should wrap your canister JS interface for type-safe calls
 // Adjust the import path to your actual canister declarations
-import { backend } from '../../../declarations/backend/index.js';
+import { backend } from "../../../declarations/backend/index.js";
 
 export interface Profile {
   id: string;
@@ -47,4 +47,4 @@ export async function getFeed(): Promise<FeedPost[]> {
       updatedAt: Number(item.author.updatedAt),
     },
   }));
-} 
+}

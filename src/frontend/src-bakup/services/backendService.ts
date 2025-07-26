@@ -1,5 +1,4 @@
-import { backend } from '../../../declarations/backend';
-
+import { backend } from "../../../declarations/backend";
 
 export const backendService = {
   async getFeed(limit: number = 20, offset: number = 0) {
@@ -22,4 +21,4 @@ export const backendService = {
       },
     }));
   },
-}; 
+};

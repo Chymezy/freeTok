@@ -1,10 +1,10 @@
-import Home from "./views/Home";
-import { AuthProvider } from "./components/AuthContext";
+import LandingPage from "./pages/LandingPage";
+import { AuthProvider } from "./context/AuthContext";
 
 export default function App() {
   return (
     <AuthProvider>
-      <Home />
+      <LandingPage />
     </AuthProvider>
   );
 }
