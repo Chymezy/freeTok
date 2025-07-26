@@ -5,9 +5,9 @@ import DashboardLayout from "../components/dashboard/DashboardLayout";
 export default function Dashboard() {
   return (
     <DashboardLayout>
-      <h1 className="text-3xl font-heading mb-6">Welcome to FreeTok 🎉</h1>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <h1 className="font-heading mb-6 text-3xl">Welcome to FreeTok 🎉</h1>
+
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
         <div className="card">🔥 Trending Topics</div>
         <div className="card">💰 Monetization Stats</div>
         <div className="card">📊 Creator Analytics</div>

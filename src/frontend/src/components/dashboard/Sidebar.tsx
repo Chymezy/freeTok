@@ -30,7 +30,6 @@
 //   );
 // }
 
-
 import { NavLink } from "react-router-dom";
 
 const navItems = [
@@ -46,8 +45,8 @@ export default function Sidebar() {
   return (
     <>
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex flex-col w-64 h-screen bg-[var(--color-primary)] text-white p-6 shadow-lg fixed top-0 left-0 z-20">
-        <h2 className="text-2xl font-heading mb-10">🔥 FreeTok</h2>
+      <aside className="fixed top-0 left-0 z-20 hidden h-screen w-64 flex-col bg-[var(--color-primary)] p-6 text-white shadow-lg lg:flex">
+        <h2 className="font-heading mb-10 text-2xl">🔥 FreeTok</h2>
         <nav className="flex flex-col gap-4">
           {navItems.map((item) => (
             <NavLink
@@ -68,15 +67,15 @@ export default function Sidebar() {
       </aside>
 
       {/* Mobile Sidebar Placeholder */}
-      <aside className="lg:hidden fixed bottom-0 left-0 right-0 z-30 bg-[var(--color-primary)] text-white shadow-inner flex justify-around py-2">
+      <aside className="fixed right-0 bottom-0 left-0 z-30 flex justify-around bg-[var(--color-primary)] py-2 text-white shadow-inner lg:hidden">
         {navItems.map((item) => (
           <NavLink
             key={item.path}
             to={item.path}
             className={({ isActive }) =>
-              `text-xs text-center transition ${
+              `text-center text-xs transition ${
                 isActive
-                  ? "text-[var(--color-secondary)] font-bold"
+                  ? "font-bold text-[var(--color-secondary)]"
                   : "opacity-80"
               }`
             }
