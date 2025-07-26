@@ -26,7 +26,7 @@ export default function Header() {
 
   const authenticatedNavItems: NavItem[] = [
     { name: "Feed", href: "/feed" },
-    { name: "Profile", href: "/profile" },
+    { name: "Profile", href: "/dashboard/profile" },
     { name: "Logout", href: "#logout", action: "logout" },
   ];
 

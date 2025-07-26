@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import Feed from "./pages/Feed";
 import PostCard from "./pages/PostCard";
 import CreatePost from "./pages/CreatePost";
+import ProfilePage from "./pages/ProfilePage";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import DashboardLayout from "./components/dashboard/DashboardLayout";
 
@@ -38,6 +39,7 @@ function MainRouter() {
         <Route path="feeds" element={<Feed />} />
         <Route path="post/:postId" element={<PostCard />} />
         <Route path="post" element={<CreatePost />} />
+        <Route path="profile" element={<ProfilePage />} />
         <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Route>
     </Routes>

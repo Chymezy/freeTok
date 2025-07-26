@@ -48,6 +48,12 @@
   code {
     font-family: var(--font-code);
   }
+
+  input,
+  textarea,
+  select {
+    @apply w-full p-3 border border-gray-200 rounded-xl bg-white text-charcoal-black focus:ring-2 focus:ring-deep-indigo focus:border-transparent transition duration-300;
+  }
 }
 
 /* === CUSTOM COMPONENTS === */
