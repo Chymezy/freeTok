@@ -34,7 +34,9 @@ export default function Feed() {
             className="cursor-pointer rounded-lg border border-gray-300 bg-gray-50 p-4 shadow-sm transition hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:hover:bg-gray-800"
             onClick={() => handlePostClick(post.id)}
           >
-            <p className="font-body line-clamp-3 text-base text-gray-900 dark:text-gray-100">{post.content}</p>
+            <p className="font-body line-clamp-3 text-base text-gray-900 dark:text-gray-100">
+              {post.content}
+            </p>
             <div className="mt-2 text-sm text-gray-600 dark:text-gray-400">
               Likes: {post.likes} | Comments: {post.comments}
             </div>

@@ -30,13 +30,13 @@ function MainRouter() {
   }
 
   return (
-      <Routes>
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/dashboard/feeds" element={<Feed />} />
-        <Route path="/post/:postId" element={<PostCard />} />
-        <Route path="/create-post" element={<CreatePost />} />
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
-      </Routes>
+    <Routes>
+      <Route path="/" element={<Navigate to="/dashboard" replace />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/dashboard/feeds" element={<Feed />} />
+      <Route path="/post/:postId" element={<PostCard />} />
+      <Route path="/create-post" element={<CreatePost />} />
+      <Route path="*" element={<Navigate to="/dashboard" replace />} />
+    </Routes>
   );
 }

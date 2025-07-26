@@ -30,7 +30,7 @@ export default function Dashboard() {
         <h1 className="font-heading mb-6 text-3xl">Welcome to deCentra 🎉</h1>
         <button
           onClick={() => navigate("/create-post")}
-          className="rounded bg-primary px-4 py-2 font-semibold text-white hover:bg-primary-dark"
+          className="bg-primary hover:bg-primary-dark rounded px-4 py-2 font-semibold text-white"
         >
           Create Post
         </button>

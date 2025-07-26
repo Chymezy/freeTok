@@ -51,10 +51,10 @@ export default function CreatePost() {
   return (
     <DashboardLayout>
       <div className="mx-auto max-w-2xl p-4">
-        <h1 className="mb-6 text-3xl font-heading">Create New Post</h1>
+        <h1 className="font-heading mb-6 text-3xl">Create New Post</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <textarea
-            className="w-full rounded border border-gray-300 p-3 text-base resize-y focus:outline-none focus:ring-2 focus:ring-primary dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+            className="focus:ring-primary w-full resize-y rounded border border-gray-300 p-3 text-base focus:ring-2 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
             rows={6}
             maxLength={maxLength}
             placeholder="Write your post content here..."
@@ -63,13 +63,15 @@ export default function CreatePost() {
             disabled={loading}
           />
           <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400">
-            <span>{content.length} / {maxLength}</span>
+            <span>
+              {content.length} / {maxLength}
+            </span>
             {error && <span className="text-red-500">{error}</span>}
           </div>
           <button
             type="submit"
             disabled={loading}
-            className="rounded bg-primary px-6 py-3 font-semibold text-white hover:bg-primary-dark disabled:opacity-50"
+            className="bg-primary hover:bg-primary-dark rounded px-6 py-3 font-semibold text-white disabled:opacity-50"
           >
             {loading ? "Posting..." : "Post"}
           </button>

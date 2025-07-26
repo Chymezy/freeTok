@@ -74,7 +74,10 @@ export default function PostCard() {
   const handleAddComment = async () => {
     if (!postData || newComment.trim() === "") return;
     try {
-      const result = await backendService.addComment(postData.post.id, newComment);
+      const result = await backendService.addComment(
+        postData.post.id,
+        newComment,
+      );
       if ("#ok" in result) {
         const comment = result["#ok"];
         setComments([...comments, comment]);
@@ -163,7 +166,7 @@ export default function PostCard() {
 
       {/* Comments Section */}
       <div className="mt-6">
-        <h4 className="mb-2 font-heading text-lg">Comments</h4>
+        <h4 className="font-heading mb-2 text-lg">Comments</h4>
         <div className="space-y-4">
           {comments.length === 0 && (
             <p className="text-gray-500 dark:text-gray-400">No comments yet.</p>
@@ -180,22 +183,22 @@ export default function PostCard() {
             </div>
           ))}
         </div>
-      <div className="mt-4 flex gap-2">
-        <textarea
-          className="flex-1 rounded border border-gray-300 p-2 text-sm bg-white text-gray-900 dark:border-gray-600 dark:bg-gray-100 dark:text-gray-900 placeholder-gray-500"
-          rows={2}
-          placeholder="Add a comment..."
-          value={newComment}
-          onChange={(e) => setNewComment(e.target.value)}
-        />
-        <button
-          className="rounded bg-primary px-4 py-2 text-white hover:bg-primary-dark disabled:opacity-50"
-          onClick={handleAddComment}
-          disabled={newComment.trim() === ""}
-        >
-          Post
-        </button>
-      </div>
+        <div className="mt-4 flex gap-2">
+          <textarea
+            className="flex-1 rounded border border-gray-300 bg-white p-2 text-sm text-gray-900 placeholder-gray-500 dark:border-gray-600 dark:bg-gray-100 dark:text-gray-900"
+            rows={2}
+            placeholder="Add a comment..."
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+          />
+          <button
+            className="bg-primary hover:bg-primary-dark rounded px-4 py-2 text-white disabled:opacity-50"
+            onClick={handleAddComment}
+            disabled={newComment.trim() === ""}
+          >
+            Post
+          </button>
+        </div>
       </div>
     </div>
   );
